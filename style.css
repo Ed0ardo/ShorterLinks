@@ -1,0 +1,133 @@
+input {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -300%);
+    display: block;
+    width: 80vw;
+    opacity: 1;
+}
+
+input {
+    padding: 0.25rem 0;
+    border: 0;
+    border-bottom: 1px solid #f9214a;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 4rem;
+    letter-spacing: 0.125rem;
+}
+
+input::selection {
+    background: rgba(249, 33, 74, 0.25);
+}
+
+.result {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -300%);
+    display: block;
+    width: 80vw;
+    opacity: 1;
+    padding: 0.25rem 0;
+    border: 0;
+    border-bottom: 1px solid #f9214a;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 4rem;
+    letter-spacing: 0.125rem;
+}
+
+.tip {
+    position: fixed;
+    top: 45%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 300;
+    letter-spacing: 0.125rem;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+.clip {
+    position: fixed;
+    padding: 10px;
+    top: 45%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    color: #fff;
+    background-color: #f9214a;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 300;
+    letter-spacing: 0.125rem;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+.github {
+    position: fixed;
+    padding: 15px;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    color: #fff;
+    background-color: #111;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.125rem;
+}
+
+.github i {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-left: 15px;
+}
+
+.label-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -300%);
+    width: 80vw;
+    padding: 3.125rem 0 1.5rem;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 1;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.125rem;
+    transition: all 0.4s cubic-bezier(0.4, 0.25, 0.8, 0.3) 0.05s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom right, #111E25 0%, #111 100%);
+    font-family: "Lato", sans-serif;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}

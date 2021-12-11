@@ -1,0 +1,8 @@
+Options +SymLinksIfOwnerMatch
+#Options +FollowSymLinks
+RewriteEngine On
+
+# redirect all requests to non-existing resources to special handler
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ /redirect.php?code=$1 [L,NC]

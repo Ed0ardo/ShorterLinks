@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shorter Links</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+        par = getUrlVars()
+        if (!par["code"]) {
+            window.location.replace("https://xx.xx/sl");
+        }
+    </script>
+</head>
+
+<body>
+    <span class="label-text">Short Url:</span>
+    <h1 class='result'>xx.xx/</h1>
+    <p id="copyStart" class="clip" onclick="copy()">Copy to Clipboard</p>
+    <p id="copyResult" class="tip" style="display: none;"></p>
+    <script>
+        document.getElementsByClassName("result")[0].innerHTML = "xx.xx/" + par["code"];
+    </script>
+
+    <script>
+        function copy() {
+            navigator.clipboard.writeText("xx.xx/" + par["code"]).then(function() {
+                r = document.getElementById("copyResult");
+                r.innerHTML = "Short Link copied!";
+                document.getElementById("copyStart").style.display = "none";
+                r.style.display = "block";
+            }, function() {
+                r = document.getElementById("copyResult");
+                r.innerHTML = "Error, please copy it manually!";
+                document.getElementById("copyStart").style.display = "none";
+                r.style.display = "block";
+            });
+        }
+    </script>
+
+</body>
+
+</html>
