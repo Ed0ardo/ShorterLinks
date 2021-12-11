@@ -12,7 +12,7 @@ Yes it's another shorter links, I tried to leave it as simple as possible so as 
 
 You can test the it on [THIS SITE](https://ed0.it/sl)!
 
-![ShorterURL_test.gif](C:\Users\Edoardo\Downloads\ShorterURL_test.gif)
+![ShorterURL_test.gif](.\demo\ShorterURL_test.gif)
 
 ---
 
@@ -27,7 +27,7 @@ You can test the it on [THIS SITE](https://ed0.it/sl)!
 - Checks on user input:
 
 - - The user must actually enter a valid URL
-  
+
   - The URL entered must be at least 22 characters (protocol included) otherwise it would be shorter than the exit short link
 
 
@@ -53,11 +53,11 @@ You can test the it on [THIS SITE](https://ed0.it/sl)!
 #### Installation:
 
 1. Create a database with a table called *"associations"* with this schema:
-   
+
    | code      | link      | data      |
    | --------- | --------- |:---------:|
    | varchar() | varchar() | timestamp |
-   
+
    ```sql
    CREATE TABLE `associations` (
      `code` varchar(20) DEFAULT NULL,
@@ -95,5 +95,3 @@ You can test the it on [THIS SITE](https://ed0.it/sl)!
 > ***Buy me a coffee*** *(Trust Wallet)*:    0x825fFeB482BE713eA3bFea0F3B8c398813B65269
 
 > ***Buy me a coffee*** *(CashApp)*:    $Ed0ardo
-
-
