@@ -12,7 +12,7 @@ Yes it's another shorter links, I tried to leave it as simple as possible so as 
 
 You can test the it on [THIS SITE](https://ed0.it/sl)!
 
-![ShorterURL_test.gif](.\demo\ShorterURL_test.gif)
+![ShorterURL_test.gif](demo/ShorterURL_test.gif)
 
 ---
 
