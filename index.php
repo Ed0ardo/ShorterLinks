@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST['longURL'])) {
+if(isset($_POST['longURL']) && filter_var($_POST['longURL'], FILTER_VALIDATE_URL)) {
     
     $servername = "xxx";
     $username = "xxx";
@@ -13,12 +13,15 @@ if(isset($_POST['longURL'])) {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT code FROM associations WHERE link='".$_POST['longURL']."'";
-    $result = mysqli_query($conn, $sql);
+    $longURL = $_POST['longURL'];
 
-    $row = mysqli_num_rows($result);
+    $stmt = $mysqli->prepare("SELECT code FROM associations WHERE link=?");    
+    $stmt->mysqli_bind_param("s",$longURL);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
 
-    if($row){
+    if($result->num_rows){
 
         $result = mysqli_fetch_assoc($result);
         
@@ -43,10 +46,11 @@ if(isset($_POST['longURL'])) {
             $row = mysqli_num_rows($result);
         }
         while($row);
-        $sql = "INSERT INTO associations (code, link)
-        VALUES ('".$code."', '".$_POST['longURL']."')";
+        $stmt = $mysqli->prepare("INSERT INTO associations (code, link)
+        VALUES (?, ?)");    
+        $stmt->mysqli_bind_param("ss", $code, $longURL);
 
-        if (mysqli_query($conn, $sql)) {
+        if ($stmt->execute()) {
             mysqli_close($conn);
             header("Location: https://xx.xx/sl/result?code=" . $code);
         } else {

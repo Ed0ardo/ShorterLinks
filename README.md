@@ -28,7 +28,7 @@ You can test the it on [THIS SITE](https://ed0.it/sl)!
 
 - Button to copy the short link
 
-
+- Prevent SQL injection
 
 ###### Note:
 
@@ -61,8 +61,10 @@ Due to how the database and the scripts have been structured, these features can
    ```sql
    CREATE TABLE `associations` (
      `code` varchar(20) DEFAULT NULL,
-     `link` varchar(1000) DEFAULT NULL,
-     `data` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+     `link` varchar(767) DEFAULT NULL,
+     `data` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+     UNIQUE (`code`),
+     UNIQUE (`link`)
    );
    ```
 
