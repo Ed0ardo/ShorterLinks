@@ -2,11 +2,7 @@
 
 Yes it's another shorter links, I tried to leave it as simple as possible so as to make it usable and understandable by as many people as possible.
 
-
-
 ---
-
-
 
 #### Live Demo:
 
@@ -16,8 +12,6 @@ You can test the it on [THIS SITE](https://ed0.it/sl)!
 
 ---
 
-
-
 #### Features:
 
 - Same output in case of same input link
@@ -25,16 +19,26 @@ You can test the it on [THIS SITE](https://ed0.it/sl)!
 - Possibility to create almost 100 million short links (99795696 to be precise)
 
 - Checks on user input:
-
-- - The user must actually enter a valid URL
-
+  
+  - The user must actually enter a valid URL
+  
   - The URL entered must be at least 22 characters (protocol included) otherwise it would be shorter than the exit short link
 
+- The site is responsive
 
+- Button to copy the short link
+
+
+
+###### Note:
+
+Due to how the database and the scripts have been structured, these features can be easily added:
+
+- Custom short link (Ex: [ed0.it/google](https://ed0.it/google))
+
+- Elimination of short links after a certain time
 
 ---
-
-
 
 #### Prerequisites:
 
@@ -44,20 +48,16 @@ You can test the it on [THIS SITE](https://ed0.it/sl)!
 
 - A database (I use MySQL)
 
-
-
 ---
-
-
 
 #### Installation:
 
 1. Create a database with a table called *"associations"* with this schema:
-
+   
    | code      | link      | data      |
    | --------- | --------- |:---------:|
    | varchar() | varchar() | timestamp |
-
+   
    ```sql
    CREATE TABLE `associations` (
      `code` varchar(20) DEFAULT NULL,
@@ -78,11 +78,7 @@ You can test the it on [THIS SITE](https://ed0.it/sl)!
 
 7. That's all folks!
 
-
-
 ---
-
-
 
 #### Donation:
 
