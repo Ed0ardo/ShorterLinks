@@ -1,4 +1,4 @@
-# Shorter URL
+# Shorter Links
 
 Yes it's another shorter links, I tried to leave it as simple as possible so as to make it usable and understandable by as many people as possible.
 
