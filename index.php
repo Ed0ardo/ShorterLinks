@@ -13,20 +13,32 @@ if(isset($_POST['longURL']) && filter_var($_POST['longURL'], FILTER_VALIDATE_URL
         die("Connection failed: " . mysqli_connect_error());
     }
 
+    function get_result( $Statement ) {
+        $RESULT = array();
+        $Statement->store_result();
+        for ( $i = 0; $i < $Statement->num_rows; $i++ ) {
+            $Metadata = $Statement->result_metadata();
+            $PARAMS = array();
+            while ( $Field = $Metadata->fetch_field() ) {
+                $PARAMS[] = &$RESULT[ $i ][ $Field->name ];
+            }
+            call_user_func_array( array( $Statement, 'bind_result' ), $PARAMS );
+            $Statement->fetch();
+        }
+        return $RESULT;
+    }
+
     $longURL = $_POST['longURL'];
 
-    $stmt = $mysqli->prepare("SELECT code FROM associations WHERE link=?");    
-    $stmt->mysqli_bind_param("s",$longURL);
+    $stmt = $conn->prepare("SELECT code FROM associations WHERE link=?");    
+    $stmt->bind_param("s",$longURL);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $result = get_result($stmt);
     $stmt->close();
 
-    if($result->num_rows){
-
-        $result = mysqli_fetch_assoc($result);
-        
+    if(count($result)){
         mysqli_close($conn);
-        header("Location: https://xx.xx/sl/result?code=" . $result["code"]);
+        header("Location: https://ed0.it/sl/result?code=" . $result[0]["code"]);
     }
     else{
         function generateRandomCode($length = 6) {
@@ -46,9 +58,9 @@ if(isset($_POST['longURL']) && filter_var($_POST['longURL'], FILTER_VALIDATE_URL
             $row = mysqli_num_rows($result);
         }
         while($row);
-        $stmt = $mysqli->prepare("INSERT INTO associations (code, link)
+        $stmt = $conn->prepare("INSERT INTO associations (code, link)
         VALUES (?, ?)");    
-        $stmt->mysqli_bind_param("ss", $code, $longURL);
+        $stmt->bind_param("ss", $code, $longURL);
 
         if ($stmt->execute()) {
             mysqli_close($conn);

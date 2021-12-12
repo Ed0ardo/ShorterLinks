@@ -12,19 +12,34 @@ if(isset($_GET["code"])){
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT link FROM associations WHERE code='".$_GET["code"]."'";
-    $result = mysqli_query($conn, $sql);
+    function get_result( $Statement ) {
+        $RESULT = array();
+        $Statement->store_result();
+        for ( $i = 0; $i < $Statement->num_rows; $i++ ) {
+            $Metadata = $Statement->result_metadata();
+            $PARAMS = array();
+            while ( $Field = $Metadata->fetch_field() ) {
+                $PARAMS[] = &$RESULT[ $i ][ $Field->name ];
+            }
+            call_user_func_array( array( $Statement, 'bind_result' ), $PARAMS );
+            $Statement->fetch();
+        }
+        return $RESULT;
+    }
 
-    $row = mysqli_num_rows($result);
+    $stmt = $conn->prepare("SELECT link FROM associations WHERE code=?");    
+    $stmt->bind_param("s",$_GET["code"]);
+    $stmt->execute();
+    $result = get_result($stmt);
+    $stmt->close();
 
-    if($row){
-        $result = mysqli_fetch_assoc($result);
-
+    if(count($result)){
         mysqli_close($conn);
-        header("Location: " . $result["link"]);
+        header("Location: " . $result[0]["link"]);
     }
     else{
-        header("Location: https://xx.xx/sl");
+        mysqli_close($conn);
+        header("Location: https://ed0.it/sl");
     }
 }
 ?>
